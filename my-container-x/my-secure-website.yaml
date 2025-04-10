@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-custom-website
+spec:
+  containers:
+  - name: node-web
+    image: localhost:6000/node-web
+    ports:
+    - name: http
+      containerPort: 8080
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+      requests:
+        memory: "64Mi"
+        cpu: "250m"
+
+  - name: envoy
+    image: luksa/kubia-ssl-proxy:1.0
+    ports:
+    - name: https
+      containerPort: 8443
+    - name: admin
+      containerPort: 9901
+    resources:
+      limits:
+        memory: "64Mi"
+        cpu: "250m"
+      requests:
+        memory: "32Mi"
+        cpu: "125m"
