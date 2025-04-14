@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: node-date
+spec:
+  containers:
+  - name: node-date
+    image: localhost:5002/node-date
+    imagePullPolicy: IfNotPresent
+    ports:
+    - containerPort: 8080
